@@ -8,14 +8,41 @@ fetch('./data/elements.json')
     })
     .then(data => {
         console.log('Dataset successfully loaded:', data);
-        // Call your function here to render the periodic table using the loaded data
-        // e.g., initializePeriodicTable(data);
+        
+        // Target your container where the grid elements should be rendered
+        const tableContainer = document.getElementById('periodic-table'); 
+        if (tableContainer) {
+            // Clear any previous error text or loading messages
+            tableContainer.innerHTML = ''; 
+            
+            // Render your elements into the layout
+            data.forEach(element => {
+                const card = document.createElement('div');
+                card.className = `element-card ${element.category.toLowerCase().replace(/ /g, '-')}`;
+                card.style.gridRow = element.row;
+                card.style.gridColumn = element.column;
+                
+                card.innerHTML = `
+                    <div class="atomic-number">${element.atomicNumber}</div>
+                    <div class="symbol">${element.symbol}</div>
+                    <div class="name">${element.name}</div>
+                `;
+                
+                tableContainer.appendChild(card);
+            });
+        }
     })
     .catch(error => {
         console.error('Fetch error:', error);
-        // Display the error message on the screen if the layout requires it
-        const errorContainer = document.getElementById('error-message');
+        
+        // Target your exact display error layout from the screen
+        const errorContainer = document.querySelector('.main-content') || document.body;
         if (errorContainer) {
-            errorContainer.innerText = 'Failed to load elements.json dataset';
+            errorContainer.innerHTML = `
+                <div style="text-align: center; margin-top: 50px;">
+                    <h2 style="color: #ff4d4d; font-family: sans-serif;">Failed to load elements.json dataset</h2>
+                    <p style="color: #888;">Please verify the data folder structure on GitHub.</p>
+                </div>
+            `;
         }
     });
