@@ -1,1 +1,0 @@
-const API_KEY = "sk-proj-WD8mT3BlbkFJyeyhwxTXFrdHdGiZU5j1NFvKU-I4m_zGhGTrWINS8P58T6IPNbfdW3whYopbvXNCbp42TXNMkA";
