@@ -11,49 +11,19 @@
     <header>
         <h1>ChemVerse AI</h1>
         <p>Interactive Chemistry Learning Platform</p>
-        <input type="text" id="searchBox" placeholder="Search Element...">
+        <input type="text" id="searchBox" placeholder="Search Element by Name, Symbol, or Atomic Number...">
     </header>
 
-    <section class="filters">
-        <h2>Display Properties</h2>
-        <label><input type="checkbox" checked> Atomic Number</label>
-        <label><input type="checkbox"> Atomic Mass</label>
-        <label><input type="checkbox"> Density</label>
-        <label><input type="checkbox"> Melting Point</label>
-        <label><input type="checkbox"> Boiling Point</label>
-    </section>
-
-    <section class="table-section">
-        <h2>Periodic Table</h2>
+    <main class="table-section">
         <div class="table-responsive-wrapper">
             <div id="periodicTable"></div>
         </div>
-    </section>
+    </main>
 
     <div id="elementModal" class="modal">
         <div class="modal-content">
             <span id="closeBtn">&times;</span>
             <div id="elementInfo"></div>
-        </div>
-    </div>
-
-    <button id="chatToggleBtn" class="chat-toggle-btn">💬</button>
-
-    <div id="chatbot">
-        <div id="chatHeader">
-            <span>ChemVerse AI</span>
-            <button id="settingsToggleBtn" title="API Settings">⚙️</button>
-        </div>
-        
-        <div id="apiSettingsPanel" class="hidden">
-            <input type="password" id="apiKeyInput" placeholder="Paste Gemini API Key here...">
-            <button id="saveKeyBtn">Save</button>
-        </div>
-
-        <div id="chatMessages"></div>
-        <div class="chatInput">
-            <input type="text" id="userInput" placeholder="Ask chemistry questions...">
-            <button id="sendBtn">Send</button>
         </div>
     </div>
 
