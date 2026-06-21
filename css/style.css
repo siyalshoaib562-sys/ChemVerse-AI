@@ -110,31 +110,29 @@ header p {
     padding-left: 8px;
 }
 
-/* Outer swiping container for mobile responsive support */
 .table-responsive-wrapper {
     width: 100%;
     overflow-x: auto;
-    -webkit-overflow-scrolling: touch; /* Native inertia acceleration on iOS */
+    -webkit-overflow-scrolling: touch;
     padding-bottom: 10px;
 }
 
 #periodicTable {
     display: grid;
-    /* Strict grid parameters mapping columns 1 through 18 */
     grid-template-columns: repeat(18, minmax(55px, 1fr));
     gap: 3px;
     padding: 5px 0;
-    min-width: 1100px; /* Lock structural row layouts from crushing below readable thresholds */
+    min-width: 1100px;
 }
 
 @media (min-width: 1250px) {
     #periodicTable {
-        min-width: 100%; /* Spans view smoothly across wide desktop configurations */
+        min-width: 100%;
     }
 }
 
 /* ==========================================
-   5. COMPACT INDIVIDUAL ELEMENT CARDS
+   5. INDIVIDUAL ELEMENT CARDS
    ========================================== */
 .element {
     background: #1e293b;
@@ -181,7 +179,7 @@ header p {
 }
 
 /* ==========================================
-   6. ELEMENT CATEGORY COLORS (GROUPS)
+   6. CATEGORY COLORS
    ========================================== */
 .nonmetal { background: #22c55e20; border-left: 2px solid #22c55e; }
 .noble-gas { background: #a855f720; border-left: 2px solid #a855f7; }
@@ -194,13 +192,10 @@ header p {
 .lanthanide { background: #ec489920; border-left: 2px solid #ec4899; }
 .actinide { background: #f43f5e20; border-left: 2px solid #f43f5e; }
 
-/* Spacing gaps for Lanthanides/Actinides rows at the bottom */
-.element[style*="grid-row-start: 9"] {
-    margin-top: 15px;
-}
+.element[style*="grid-row-start: 9"] { margin-top: 15px; }
 
 /* ==========================================
-   7. MODAL POPUP WINDOW
+   7. MODAL WINDOW
    ========================================== */
 .modal {
     display: none;
@@ -226,13 +221,6 @@ header p {
     position: relative;
     max-height: 90vh;
     overflow-y: auto;
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-    animation: modalSlideUp 0.3s ease-out;
-}
-
-@keyframes modalSlideUp {
-    from { transform: translateY(30px); opacity: 0; }
-    to { transform: translateY(0); opacity: 1; }
 }
 
 #closeBtn {
@@ -242,20 +230,9 @@ header p {
     font-size: 32px;
     color: #64748b;
     cursor: pointer;
-    transition: color 0.2s;
 }
 
-#closeBtn:hover {
-    color: #ef4444;
-}
-
-#elementInfo h2 {
-    font-size: 2.2rem;
-    margin-bottom: 20px;
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
+#closeBtn:hover { color: #ef4444; }
 
 .info-grid {
     display: grid;
@@ -268,21 +245,12 @@ header p {
     background: #1e293b;
     padding: 16px;
     border-radius: 10px;
-    border: 1px solid rgba(255, 255, 255, 0.02);
 }
 
 .info-card h3 {
     color: #94a3b8;
     font-size: 12px;
     text-transform: uppercase;
-    margin-bottom: 4px;
-    letter-spacing: 0.5px;
-}
-
-.info-card p {
-    font-size: 16px;
-    font-weight: 500;
-    color: #f1f5f9;
 }
 
 /* ==========================================
@@ -305,16 +273,11 @@ header p {
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-.chat-toggle-btn:hover {
-    transform: scale(1.1);
-    box-shadow: 0 6px 20px rgba(37, 99, 235, 0.6);
+    transition: all 0.3s ease;
 }
 
 /* ==========================================
-   9. CHATBOT SIDEBAR CONTAINER
+   9. CHATBOT PANEL STYLES
    ========================================== */
 #chatbot {
     position: fixed;
@@ -330,7 +293,6 @@ header p {
     display: flex;
     flex-direction: column;
     transition: all 0.3s ease;
-    
     opacity: 0;
     transform: translateY(20px) scale(0.95);
     pointer-events: none;
@@ -345,9 +307,51 @@ header p {
 #chatHeader {
     background: linear-gradient(135deg, #1e3a8a, #1d4ed8);
     padding: 12px;
-    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     font-weight: bold;
     font-size: 14px;
+}
+
+#settingsToggleBtn {
+    background: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+#apiSettingsPanel {
+    background: #1a2548;
+    padding: 10px;
+    display: flex;
+    gap: 6px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+#apiSettingsPanel.hidden {
+    display: none !important;
+}
+
+#apiSettingsPanel input {
+    flex: 1;
+    padding: 6px;
+    background: #0f172a;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+    color: white;
+    font-size: 12px;
+}
+
+#apiSettingsPanel button {
+    background: #22c55e;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
 }
 
 #chatMessages {
@@ -381,7 +385,6 @@ header p {
     color: #f1f5f9;
     align-self: flex-start;
     border-bottom-left-radius: 2px;
-    border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .chatInput {
@@ -412,53 +415,14 @@ header p {
     color: white;
     font-weight: bold;
     font-size: 13px;
-    transition: background 0.2s;
-}
-
-.chatInput button:hover {
-    background: #1d4ed8;
 }
 
 /* ==========================================
-   10. RESPONSIVE LAYOUT (TOUCH DEVICES)
+   10. RESPONSIVE LAYOUT
    ========================================== */
 @media(max-width: 768px) {
-    header h1 {
-        font-size: 1.8rem;
-    }
-    
-    header p {
-        font-size: 0.85rem;
-    }
-
-    .filters {
-        gap: 6px;
-        padding: 10px 5px;
-    }
-
-    .filters label {
-        padding: 5px 10px;
-        font-size: 12px;
-    }
-
-    #chatbot {
-        width: 90%;
-        max-width: 340px;
-        right: 5%;
-        bottom: 85px;
-        height: 400px;
-    }
-    
-    #chatMessages {
-        flex: 1;
-        height: auto;
-    }
-
-    .chat-toggle-btn {
-        right: 5%;
-        bottom: 20px;
-        width: 50px;
-        height: 50px;
-        font-size: 20px;
-    }
+    header h1 { font-size: 1.8rem; }
+    #chatbot { width: 90%; right: 5%; bottom: 85px; height: 400px; }
+    #chatMessages { flex: 1; height: auto; }
+    .chat-toggle-btn { right: 5%; bottom: 20px; width: 50px; height: 50px; font-size: 20px; }
 }
